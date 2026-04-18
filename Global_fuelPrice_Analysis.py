@@ -1,12 +1,13 @@
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
+import os
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import r2_score
 
-file_path = "C:/Users/pc/Downloads/python_dataset.xlsx"
+file_path = os.path.join("dataset", "combined_fuel_dataset.xlsx")
 sheets = pd.read_excel(file_path, sheet_name=None)
 combined_data = []
 for fuel_type, df in sheets.items():
@@ -19,7 +20,7 @@ for fuel_type, df in sheets.items():
 final_df = pd.concat(combined_data, ignore_index=True)
 print(final_df.head())
 print(final_df.shape)
-final_df.to_excel("combined_fuel_dataset.xlsx", index=False)
+final_df.to_excel(os.path.join("dataset", "combined_fuel_dataset.xlsx"), index=False)
 print("Dataset combined successfully")
 
 
